@@ -5,8 +5,12 @@ import { authGuard } from './common-svc/auth.guard';
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'login',
+    redirectTo:'home',
     pathMatch:'full'
+  },
+  {
+    path:'home',
+    loadChildren:()=>import('./public/public.module').then(x=>x.PublicModule)
   },
   {
     path:'login',
