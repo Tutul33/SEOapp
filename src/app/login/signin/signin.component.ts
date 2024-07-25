@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, Routes } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthSvcService } from 'src/app/common-svc/auth-svc.service';
 
 @Component({
@@ -8,18 +9,18 @@ import { AuthSvcService } from 'src/app/common-svc/auth-svc.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent {
-  constructor(private routes: Router,private authSvc:AuthSvcService) {
-
+  constructor(private router: Router, private authSvc: AuthSvcService) {
+    console.log(this.router.url)
   }
   goToRegister() {
-    this.routes.navigate(['login/sign-up']);
+    this.router.navigate(['login/sign-up']);
   }
   signIn() {
     this.authSvc.setLoginData(true);
-    this.routes.navigate(['dashboard']);
+    this.router.navigate(['dashboard']);
   }
   goToHomePage() {
-    this.routes.navigate(['home']);
+    this.router.navigate(['home']);
   }
 
 }

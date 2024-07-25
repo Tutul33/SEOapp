@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './CommonRSS/sidebar/sidebar.component';
 import { HeaderComponent } from './CommonRSS/header/header.component';
+import { StorageService } from './common-svc/storage.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { HeaderComponent } from './CommonRSS/header/header.component';
     ReactiveFormsModule,
     CommonModule
   ],
-  providers: [],
+  providers: [
+    StorageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

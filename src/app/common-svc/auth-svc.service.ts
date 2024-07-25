@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class AuthSvcService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.getInitialLoginState());
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  constructor() {
+  constructor(private storageSvc:StorageService) {
     this.setupAutoChecker();
   }
   private setupAutoChecker(): void {
@@ -19,12 +20,12 @@ export class AuthSvcService {
     }, 1000*30); // Check every minute (adjust interval as needed)
   }
   private getInitialLoginState(): boolean {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const isLoggedIn = this.storageSvc.getItem("isLoggedIn");
     return isLoggedIn === 'true';
   }
 
   setLoginData(isLoggedIn: boolean): void {
-    localStorage.setItem("isLoggedIn", String(isLoggedIn));
+    this.storageSvc.setItem("isLoggedIn", String(isLoggedIn));
     this.isLoggedInSubject.next(isLoggedIn);
   }
 
