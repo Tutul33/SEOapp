@@ -18,5 +18,8 @@ export class SigninComponent {
     this.authSvc.setLoginData(true);
     this.routes.navigate(['dashboard']);
   }
+  goToHomePage() {
+    this.routes.navigate(['home']);
+  }
 
 }
